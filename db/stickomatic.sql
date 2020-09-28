@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 25 sep. 2020 à 15:29
+-- Généré le : lun. 28 sep. 2020 à 17:33
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.4
 
@@ -24,18 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `images`
+--
+
+CREATE TABLE `images` (
+  `id` int(11) NOT NULL,
+  `stickerId` int(11) NOT NULL,
+  `imagePath` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `images`
+--
+
+INSERT INTO `images` (`id`, `stickerId`, `imagePath`) VALUES
+(1, 17, '17/image0.jpg'),
+(2, 18, '18/image0.png');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `stickers`
 --
 
 CREATE TABLE `stickers` (
   `id` int(11) NOT NULL,
-  `creatorId` int(11) NOT NULL,
-  `texture` varchar(20) NOT NULL,
-  `offsetX` int(11) NOT NULL,
-  `offsetY` int(11) NOT NULL,
-  `width` int(11) NOT NULL,
-  `height` int(11) NOT NULL
+  `creatorId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `stickers`
+--
+
+INSERT INTO `stickers` (`id`, `creatorId`) VALUES
+(15, 1),
+(16, 1),
+(17, 1),
+(18, 1);
 
 -- --------------------------------------------------------
 
@@ -52,8 +77,22 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `passwd`, `firstName`, `lastName`) VALUES
+(1, 'florian.poinsot@ynov.com', '$2y$10$.esZHAzyGy9VsWGVT0eHe.JoaANwXXp7iqDOFNHXMn7UTe7VGveSa', 'Florian', 'Poinsot');
+
+--
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `stickerId` (`stickerId`);
 
 --
 -- Index pour la table `stickers`
@@ -73,20 +112,32 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT pour la table `images`
+--
+ALTER TABLE `images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT pour la table `stickers`
 --
 ALTER TABLE `stickers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `images`
+--
+ALTER TABLE `images`
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`stickerId`) REFERENCES `stickers` (`id`);
 
 --
 -- Contraintes pour la table `stickers`

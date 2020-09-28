@@ -2,16 +2,17 @@
 include('../inc/data.inc.php');
 
   
-  if(!empty($_FILES))
+  
+  if(!empty($_FILES)) 
   {
     $userID = $user->id;
-    
+  
     $query = "INSERT INTO stickers (creatorId) VALUES ('$userID');";
 
     $result = $pdo->exec($query);
     $sID = $pdo->lastInsertId();
+
     $dir = "../stickers/$sID";
-    
     foreach ($_FILES["images"]["error"] as $key => $error) {
       if ($error == UPLOAD_ERR_OK) {
         if(!file_exists($dir)) {
@@ -26,6 +27,7 @@ include('../inc/data.inc.php');
         move_uploaded_file($tmp_name, "$dir/$fileName");
 
         $query = "INSERT INTO images (stickerId, imagePath) VALUES ('$sID', '$sID/$fileName');";
+        echo $query;
         $result = $pdo->exec($query);
       }
     }
