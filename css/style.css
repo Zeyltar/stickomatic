@@ -5,7 +5,7 @@
 }
 
 .hero {
-    background-image: url(img/thumb-1920-956578.jpg);
+    background-image: url(../img/stock-vector-set-of-weekly-or-daily-planner-and-diaries-vector-flat-illustration-cute-sticker-template-1627255771.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -40,24 +40,4 @@
 
 .product-thumbtail {
     position: relative;
-}
-
-.footer-column {
-    flex-direction: column;
-    padding: 0;
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.footer-list {
-    margin-right: 0;
-    margin-bottom: 30px;
-    text-align: left;
-}
-
-.faq-list {
-    display: flex;
-    margin-right: 5px;
-    text-decoration: none;
-    color: white;
 }
